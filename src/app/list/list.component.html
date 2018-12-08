@@ -1,0 +1,76 @@
+<input type="checkbox" id="update-checker">
+<div class="update-to-do">
+  <form *ngIf="updateItemInput">
+      
+      <label for="update-checker"><i class="fa fa-times-circle close-update"></i></label>
+      <input type="text" 
+      #updateInput
+      (keyup)="update($event, updateItemInputId.value, updateInput.value)"
+      [(ngModel)]="updateItemInput.title"
+      name="todoTitle"
+      >
+      <input 
+      type="text" 
+      style="display:none;" 
+      [(ngModel)]="updateItemInput.id" 
+      name="updateItemInputId"
+      #updateItemInputId>
+  </form>
+</div>
+
+
+<div class="todo-container">
+  <div class="todo--heading">
+    <div class="todo--heading__day">{{day}}</div>
+    <div class="todo--heading__date">
+      {{month}} {{dayDate}}, {{year}}
+    </div>
+  </div>
+  <div class="todo--add">
+    <form  name="ToDoTitle">
+      <input 
+          type="text" 
+          #f 
+          name="title" 
+          (keyup.enter)="addToList(f)" 
+          placeholder="Add task..." 
+          class="form-control" 
+          autocomplete="off">
+      <div class="add-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> 
+      </div>
+    </form>
+    
+  </div>
+
+ 
+
+  <div class="todo--list">
+    <div class="todo--item--container" *ngFor="let item of toDoList">
+       
+      <div class="item-container">
+        <div class="item-checkbox">
+            <input type="checkbox" class="form-control" (click)="labelChecked($event)">
+            <div class="custom-checkbox"></div>
+        </div>
+        <div>
+            <input class="item-title" type="text" value="{{item.title}}" disabled>
+            <!-- <p class="item-desc">the description here</p>      -->
+        </div>
+      </div>
+      
+      <div class="delete-icon">
+          <label for="update-checker" (click)="getItemToUpdate(item); showUpdateForm();">
+            <i class="fa fa-pencil-square-o"></i>
+          </label>
+        <i class="fa fa-times-circle" (click)="deleteItem(item.id)"></i>
+      </div>
+      
+      
+
+    </div>
+  </div>
+</div>

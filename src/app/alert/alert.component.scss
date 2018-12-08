@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Electrolize');
+body{
+  margin:0;
+  padding:1rem;
+  
+}
+body *{
+  box-sizing: border-box;
+}
+.alert-container{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: .5rem;
+  overflow:hidden;
+}
+
+.alert-container > div{
+  width:100%;
+  text-align:center;
+}
+.alert--header{
+  background: #383E44;
+  padding: 3rem 1rem;
+}
+
+.alert--header i{
+  font-size: 5rem;
+  color: #dfe8f2;
+}
+
+.alert--footer{
+  background: #22282d;
+  margin-top:-1px;
+  padding: 1rem;
+  color: #dfe8f2;;
+}
+
+.alert--title{
+  font-size:2rem;
+  margin:0;
+  padding:0;
+  font-weight: bold;
+}
+
+.alert--desc{
+  letter-spacing: 2px;
+}
+
+.alert--buttons{
+  margin: .5rem 0rem;
+}
+
+.alert-btn{
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  margin: 0rem .3rem;
+  box-shadow: 0px 0px 24px 1px rgba(0, 0, 0, 0.22);
+  border: 1px solid #2b3038;
+  font-weight: bold;
+  background: #494F5A;
+  color: #A1A9B8;
+  cursor: pointer;
+  font-family: 'Electrolize';
+  line-height: 25px;
+  outline:none;
+}
+
+.alert-btn:hover{
+  background: #303746;
+}
+
+.alert-btn:active{
+  transform: scale(.9);
+}
+.alert--buttons .alert--no{
+  
+}

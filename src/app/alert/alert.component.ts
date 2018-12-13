@@ -1,4 +1,5 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'alert',
@@ -8,15 +9,16 @@ import { Component, OnInit, Injectable } from '@angular/core';
 @Injectable()
 export class AlertComponent implements OnInit {
 
-  alert;
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    public dialogRef: MatDialogRef<AlertComponent>
+  ) { }
 
   ngOnInit() {
   }
 
-  customAlert(e){
-    e.target.getAttribute('data-confirm') == "no" ? this.alert = false : this.alert = true;
-    // console.log( this.alert )
+  closeDialog() {
+    this.dialogRef.close(false);
   }
 
 }

@@ -1,22 +1,25 @@
-
-<div class="alert-container">
+<div class="alert-container" *ngIf="confirmIsActive">
   <div class="alert--header">
     <i class="fa fa-exclamation-triangle"></i>
 
   </div>
   <div class="alert--footer">
     <p class="alert--title">WARNING</p>
-    <p class="alert--desc">{{data.message}}</p>
-    <div class="alert--buttons">
+    <p class="alert--desc">{{msg}}</p>
+    <form class="alert--buttons">
       <button class="alert--no alert-btn" 
-      mat-flat-button
-      [mat-dialog-close]="false"
+      #no
+      (click)="confirm($event)"
       >No</button>
       <button class="alert--yes alert-btn" 
-      mat-flat-button
-      [mat-dialog-close]="true"
+      #yes
+      (click)="confirm($event)"
       >Yes</button>
       
-    </div>
+    </form>
   </div>
 </div>
+<!-- 
+      (click)="confirmNo($event)"
+      (click)="confirmYes($event)"
+ -->

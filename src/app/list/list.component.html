@@ -1,20 +1,29 @@
-<input type="checkbox" id="update-checker">
+<!-- <div *ngIf="afAuth.user | async as user; else showLogin">
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="logout()">Logout</button>
+</div> -->
+
+
+<input type="checkbox" id="update-checker" >
 <div class="update-to-do">
   <form *ngIf="updateItemInput">
       
-      <label for="update-checker"><i class="fa fa-times-circle close-update"></i></label>
-      <input type="text" 
-      #updateInput
-      (keyup)="update($event, updateItemInputId.value, updateInput.value)"
-      [(ngModel)]="updateItemInput.title"
-      name="todoTitle"
+    <label for="update-checker" #updateChackerLabel>
+      <i class="fa fa-times-circle close-update"></i>
+    </label>
+
+    <input
+    [(ngModel)]="updateItemInput.title"
+    #updateInput
+    (keyup)="update($event, updateItemInputId.value, updateInput.value)"
       >
-      <input 
-      type="text" 
-      style="display:none;" 
-      [(ngModel)]="updateItemInput.id" 
-      name="updateItemInputId"
-      #updateItemInputId>
+
+    <input type="text" 
+    [(ngModel)]="updateItemInput._id" 
+    name="updateInput" 
+    #updateItemInputId 
+    style="display:none;"
+    >
   </form>
 </div>
 
@@ -26,7 +35,8 @@
       {{month}} {{dayDate}}, {{year}}
     </div>
   </div>
-  <div class="todo--add">
+
+  <div class="todo--add" *ngIf="isloged.isLoggedIn() else noToDO">
     <form  name="ToDoTitle">
       <input 
           type="text" 
@@ -46,31 +56,42 @@
     
   </div>
 
- 
-
-  <div class="todo--list">
-    <div class="todo--item--container" *ngFor="let item of toDoList">
-       
-      <div class="item-container">
-        <div class="item-checkbox">
-            <input type="checkbox" class="form-control" (click)="labelChecked($event)">
-            <div class="custom-checkbox"></div>
+  <div class="todo--list" *ngIf="isloged.isLoggedIn()">
+    <div  *ngIf="toDoExist else addSometoDo" >
+      <div class="todo--item--container" *ngFor="let item of toDoList" >
+        
+        <div class="item-container">
+          <div class="item-checkbox">
+              <input type="checkbox" 
+              class="form-control" 
+              (click)="labelChecked($event, item)"
+              
+              >
+              <div class="custom-checkbox"></div>
+          </div>
+          <div>
+              <p class="item-title">{{item.title}}</p>
+              <!-- <p class="item-desc">the description here</p>      -->
+          </div>
         </div>
-        <div>
-            <input class="item-title" type="text" value="{{item.title}}" disabled>
-            <!-- <p class="item-desc">the description here</p>      -->
+        
+        <div class="delete-icon">
+            <label for="update-checker" (click)="getItemToUpdate(item._id, $event);">
+              <i class="fa fa-pencil-square-o"></i>
+            </label>
+          <i class="fa fa-times-circle" (click)="deleteItem(item._id)"></i>
         </div>
-      </div>
-      
-      <div class="delete-icon">
-          <label for="update-checker" (click)="getItemToUpdate(item); showUpdateForm();">
-            <i class="fa fa-pencil-square-o"></i>
-          </label>
-        <i class="fa fa-times-circle" (click)="deleteItem(item.id)"></i>
-      </div>
-      
-      
+        
+        
 
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #addSometoDo>
+    <p style="color: white;">Add Some TODO.</p>
+</ng-template>
+<ng-template #noToDO>
+    <p style="color: white;">Sorry, you have to login to add todo.</p>
+</ng-template>

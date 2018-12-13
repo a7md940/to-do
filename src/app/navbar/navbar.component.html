@@ -1,6 +1,12 @@
-<nav>
-    <ul>
-        <li><a href="">Login</a></li>
-        <li><a href="">Register</a></li>
-    </ul>
-</nav>
+<div class="container">
+    <div class="row">
+            <nav>
+                hi, <span *ngIf="loggedIn.isLoggedIn()"> {{loggedIn.currentUser.username}} </span>
+                <ul>
+                    <li *ngIf="!loggedIn.isLoggedIn()"><a routerLink="/login">Login</a></li>
+                    <li *ngIf="!loggedIn.isLoggedIn()"><a routerLink="/signup">Register</a></li>
+                    <li *ngIf="loggedIn.isLoggedIn()"><a style="cursor: pointer; color: #007bff;" (click)="loggedIn.logOut()">Logout</a></li>
+                </ul>
+            </nav>
+    </div>
+</div>

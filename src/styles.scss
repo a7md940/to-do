@@ -1,12 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+// angular material..
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @import url('https://fonts.googleapis.com/css?family=Limelight');
 @import url('https://fonts.googleapis.com/css?family=Electrolize');
 
 body{
-  // /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#499bea+0,1e5cd8+100 */
-  //   background: #499bea; /* Old browsers */
-  //   background: -moz-linear-gradient(-45deg, #499bea 0%, #1e5cd8 100%); /* FF3.6-15 */
-  //   background: -webkit-linear-gradient(-45deg, #499bea 0%,#1e5cd8 100%); /* Chrome10-25,Safari5.1-6 */
-  //   background: linear-gradient(135deg, #499bea 0%,#1e5cd8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  //   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1e5cd8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#499bea+0,1e5cd8+100 */
+    // background: #499bea; /* Old browsers */
+    // background: -moz-linear-gradient(-45deg, #499bea 0%, #1e5cd8 100%); /* FF3.6-15 */
+    // background: -webkit-linear-gradient(-45deg, #499bea 0%,#1e5cd8 100%); /* Chrome10-25,Safari5.1-6 */
+    // background: linear-gradient(135deg, #499bea 0%,#1e5cd8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1e5cd8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+.btn-dialog-close{
+  width: 45px;
+  min-width: 0px !important;
+  height: 40px;
+  padding: 0px !important;
+}
+
+ /* mat-confirm-dialog (customised dialog) */
+ .confirm-dialog-container .mat-dialog-container {
+  border-radius: .25em .25em .4em .4em;
+  padding: 0px;
+  overflow: unset !important;
+}
+.confirm-dialog-container .content-container{
+  margin: 5px 5px 15px 5px;
+  color: #8f9cb5;
+  display: flex;
 }

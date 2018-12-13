@@ -1,0 +1,48 @@
+<div class="signin-container">
+    <form #signin [formGroup]="loginForm" (submit)="submitSignin()">
+ 
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" 
+                 [formControl]="username"
+                 autocomplete="off"
+                 [errorStateMatcher]="matcher">
+          <mat-error *ngIf="username.hasError('minlength') && !username.hasError('required')">
+            Username min length is 3 charachters.
+          </mat-error>
+          <mat-error *ngIf="username.hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" 
+          [formControl]="password"
+          type="password"
+          autocomplete="off"
+          [errorStateMatcher]="matcher">
+          <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+              Password should be minimum 6 charachters.
+            </mat-error>
+          <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+      
+      <mat-error *ngIf="isAPIError">
+        {{APIError}}
+      </mat-error>
+
+      <div>
+        <button mat-raised-button color="primary"
+         type="submit"
+         [disabled]="!loginForm.valid"
+         >signin</button>
+         <button mat-raised-button color="accent"
+         type="button"
+         routerLink="/signup"
+         >SignUp</button>
+      </div>
+    </form>
+    
+  
+    </div>

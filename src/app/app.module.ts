@@ -5,11 +5,6 @@ import { MaterialModule } from './material/material.module';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-// Firebase
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-
 import { environment } from '../environments/environment';
 
 // Components
@@ -49,13 +44,10 @@ import { HomeComponent } from './home/home.component';
       {path: '', component: ListComponent},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
-    ]),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    ])
   ],
   providers: [
     ListService,
-    AngularFireAuth
   ],
   bootstrap: [AppComponent],
   entryComponents: [ListComponent, AlertComponent]

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  readonly URL = 'http://localhost:3000/api/users/login';
+  readonly URL = 'api/users/login';
   constructor(private http: HttpClient) { }
   login(user){
     const loginAPI: Observable<any> = this.http.post(this.URL,user);

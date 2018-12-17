@@ -1,8 +1,28 @@
+.container-fluid{
+
+    width: 100% !important;
+    .navbar-container{
+        padding: 0px !important;
+    }
+}
 nav{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    margin: .8rem 0rem;
+    background: white;
+    box-shadow: 0px 5px 37px 5px rgba(0,0,0,.2);
+    background-color: white;
+    position: relative;
+    padding: 0rem 3rem;
+    margin-bottom:3.5rem;
+    min-height: 60px;
+    
+    & > div{
+        display:flex;
+        margin: .3rem 0rem;
+
+    }
+
     ul{
 
         display:flex;
@@ -14,6 +34,58 @@ nav{
         
         li{
             margin: 0rem .5rem;
+
+            a{
+                cursor: pointer; 
+                color: #007bff;
+            }
+        }
+    }
+
+    .nav-right{
+        .settings{
+            position: relative;
+            
+        }
+
+        .settings-drop-down{
+            position: absolute;
+            z-index: 3;
+            padding: .6rem .4rem;
+            box-sizing: content-box;
+            width: 159px;
+            height: 61px;
+            background: #fdfdfd;
+            display: list-item;
+            right: 0px;
+            top: 26px;
+            border-radius: 6px;
+            box-shadow: -6px 8px 20px -1px rgba(0,0,0,.1);
+            
+            li:not(:last-child){
+                border-bottom: 1px solid #eee;
+            }
+
+            li{
+                padding: .3rem 0rem;
+            }
+        }
+    }
+
+    .image-profile{
+        width:50px;
+        height: 50px;
+        position: relative;
+        border-radius: 50%;
+        border: 3px solid red;
+        overflow: hidden;
+       img{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width: 158% !important;
+
         }
     }
 }

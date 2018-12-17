@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class IsloggedinService {
+  readonly apiURL: string = 'http://localhost:3000/' 
 
   constructor() { }
 
@@ -23,14 +24,19 @@ export class IsloggedinService {
     return !isExpired; 
   }
 
+  get token (){return localStorage.getItem('token')}
+
   get currentUser(){
-    let token = localStorage.getItem('token');
-    return new JwtHelperService().decodeToken(token);;
+    return {
+      user: new JwtHelperService().decodeToken(localStorage.getItem('token')),
+      userImage: localStorage.getItem('userImage')
+   };
   }
 
   logOut(){
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userImage');
   }
 }

@@ -18,22 +18,54 @@
     }
   }
  
-  input:focus,
-  input:active{
-    outline:none !important;
-    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.095) !important;
+  input:focus,input:active{
+    outline: none !important;
   }
-  
+  input[name="title"]:focus,
+  input[name="title"]:active{
+    box-shadow: 0px 20px 56px -6px rgba(0, 0, 0, 0.05) !important;
+    transform: scale(.9) !important;
+  }
+  .search-input {
+    position: relative;
+    height: 50px;
+    width: 40%;
+    & > input{
+      border: none;
+      border-bottom: 2px solid #6994fb75;
+      padding: 0rem 0rem 0rem 3rem;
+      background: transparent;
+      font-size: 2rem;
+      &::-webkit-input-placeholder{
+        opacity:.5;
+        color:#6994fb5c;
+      }
+    }
+    &::after{
+      content: '\f002';
+      font-family: 'FontAwesome';
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      font-size: 1.6rem;
+      opacity: .2;
+    }
+  }  
+
   .todo-container{
     margin: 1rem;
-    background: var(--dark);
+    background: linear-gradient(209.22deg, #ffffff 4.25%, #f1f1f1 95.6%);
     border-radius: 5px;
     padding: 1rem;
-    box-shadow: 0px 10px 51px 0px rgba(0, 0, 0, 0.3);
-    display:flex;
+    box-shadow: 0px 50px 50px rgba(0, 0, 0, 0.15);
+    display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
+    // width: 70%;
+    margin: 0 auto;
   }
   
   .todo-container > div{
@@ -45,15 +77,18 @@
   }
   
   .todo--heading .todo--heading__day{
-    font-size: 4rem;
-    color: var(--grey-light);
+    font-size: 5rem;
+    color: #6994fb;
+    text-shadow: 3px 3px 5px rgba(0,0,0,.05);
     font-weight: 600;
     font-family: 'Limelight', cursive;
   }
   
   .todo--heading .todo--heading__date{
-    color: var(--grey-light);
+    color: #8596a9;
     opacity: 0.5;
+    font-weight: 600;
+    letter-spacing: 0px;
   }
   
   .todo--add {
@@ -85,21 +120,26 @@
   .todo--add .add-icon span:nth-of-type(3){
     width:80%;
   }
-  
-  
+    
   .todo--add .add-icon span:nth-of-type(4){
     width:60%;
   }
-  
-  
+   
   .todo--add input[type="text"].form-control{
     padding-left: 1.8rem;
-    margin: 0 auto;
-    background: var(--darken);
-    border: 1px solid #262930;
-    display:block;
-    caret-color: white;
-    color: var(--grey-light)
+    margin: 2rem auto;
+    border-radius: 12px;
+    border: 0px solid #262930;
+    display: block;
+    caret-color: #8d99a5;
+    font-weight: 300;
+    color: #8d99a5;
+    height: 60px;
+    box-shadow: 0px 30px 82px -18px rgba(0, 0, 0, 0.15);
+    font-size: 1.5rem;
+    width: 80%;
+    transform: scale(1);
+    transition: .3s all;
   }
   
   .todo--list{
@@ -110,10 +150,28 @@
   }
   
   .todo--item--container {
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    width:100%;
-    margin: 1rem 0rem ;
+    width: 100%;
+    margin: 1rem 0rem;
+    border-bottom: 1px solid rgb(234, 234, 234);
+    padding: 1rem 1.5rem;
+    transition: .1s all;
+    &:hover {
+      background: #000000bf;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0px 16px 39px 1px rgba(0,0,0,.15);
+    }
+
+    &:hover .item-container .item-title{
+      color: white;
+      font-weight: bold;
+    }
+
+    &:hover .delete-icon i {
+      opacity: 1;
+    }
   }
 
   .todo--item--container > div:nth-of-type(2){
@@ -146,49 +204,50 @@
     z-index:2;
     cursor:pointer;
   }
-  
-  .item-checkbox > input:checked + .custom-checkbox::after{
-    opacity: 1;
-  }
-  
-  .item-checkbox > input:hover + .custom-checkbox{
-    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.095) !important;
-  }
-  .item-checkbox > input:active + .custom-checkbox{
+
+  .item-checkbox .custom-checkbox:hover{
+    
+  } 
+
+  .item-checkbox .custom-checkbox:active{
     transform: scale(1.5);
   }
-  
+
   .item-checkbox .custom-checkbox{
-    opacity:1;
-    width: 15px;
-    height:15px;
-    background: var(--dark);
-    border: var(--border-color) solid 1px;
+    cursor: pointer;
+    opacity: 1;
+    width: 25px;
+    height: 25px;
+    background: #f5f5f5;
     position: relative;
-    top:0px;
+    top: 0px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.0);
     transition: .1s all ease-in-out;
   }
   
-  .item-checkbox .custom-checkbox::after{
+  .item-checkbox .custom-checkbox-right::after{
     content: '\f00c';
     font-family: 'FontAwesome';
-    opacity:0;
     position: absolute;
     top: 50%;
-    line-height: 15px;
-    left:50%;
-    transform: translate(-50%,-50%);
-    font-size:.8rem;
-    color: var(--grey-light);
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #6994fb;
   }
   
   .item-title{
-    font-size: .8rem;
+    font-size: 22px;
     margin: 0rem;
-    font-weight: 600;
-    color: var(--grey-light) !important;
+    font-weight: 300;
+    color: rgba(66, 66, 66, 0.39);
     background: transparent;
-    border: none; 
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    transition: .1s all;
   }
 
   .item-title:active,
@@ -205,14 +264,23 @@
   }
   
   .delete-icon i{
-    color: var(--grey-light);
     opacity:.5;
-    cursor: pointer;
-    margin: 0rem .2rem;
+    cursor: pointer; 
+    font-size: 2rem;
+    text-shadow: 4px 5px 5px rgba(0,0,0,.15);
+    margin: 0rem .8rem;
+    transition: .1s all;
   }
-  
+  // delete icon 
+  .fa.fa-trash-o{
+    color: #ff0027;
+  }
+  // edite icon
+  .fa.fa-pencil-square-o{
+    color: #19ca42;
+  }
   .delete-icon i:hover{
-    opacity:1;
+    opacity: 1;
   }
   
   .delete-icon i:active{

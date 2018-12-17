@@ -1,0 +1,10 @@
+<div class="profile-container">
+  <form (submit)="updateImageProfile($event, image)">
+    <input (change)="onInputChange(image)" #image type="file" name="image" id="">
+    <button type="submit">update image</button>
+  </form>
+
+  <div>
+    <img [src]="userImage" alt="">
+  </div>
+</div>

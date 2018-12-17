@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   
   submitSignin(){
  
-    // Send data to the API.
+    // Send data to the API and get user info.
     this.loginService.login(this.loginForm.value)
     .subscribe(res => {
       console.log(res);
@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         localStorage.setItem('userId', res.data.id);
         localStorage.setItem('username', res.data.username);
+        localStorage.setItem('userImage', res.data.userImage)
         this.router.navigate(['']);
+        
         // reset the form and clean angular material errors validations.
         this.loginForm.reset();
         Object.keys(this.loginForm.controls).forEach(key => {

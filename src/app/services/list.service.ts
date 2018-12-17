@@ -8,7 +8,7 @@ import { IsloggedinService } from './isloggedin.service';
 export class ListService {
 
   constructor(private http:HttpClient, private isloged: IsloggedinService) { }
-  URL = 'http://localhost:3000/api/users/todo';
+  URL = 'api/users/todo';
 
   private tokenHeader(){
     let token = localStorage.getItem('token');
@@ -41,6 +41,13 @@ export class ListService {
     if(this.isloged.isLoggedIn()){
       const deleteToDo:Observable<any> = this.http.delete(this.URL +'/'+ toDoId, {headers: this.tokenHeader()});
       return deleteToDo;
-      }
+    }
+  }
+
+  updateToDo(toDoId, data){
+    if(this.isloged.isLoggedIn()){
+      const updateToDo:Observable<any> = this.http.put(this.URL, {toDoId: toDoId, newToDo: data} , {headers: this.tokenHeader()});
+      return updateToDo;
+    }
   }
 }

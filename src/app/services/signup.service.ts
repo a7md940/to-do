@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
-  readonly URL = 'http://localhost:3000/api/users/signup';
+  readonly URL = 'api/users/signup';
   
   constructor(private http: HttpClient) { }
   signupNewUser(user){

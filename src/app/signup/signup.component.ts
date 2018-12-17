@@ -64,6 +64,7 @@ export class SignupComponent implements OnInit {
         localStorage.setItem('token', res.token);
         localStorage.setItem('userId', res.data._id);
         localStorage.setItem('username', res.data.username);
+        localStorage.setItem('userImage', res.data.userImage)
          // reset the form and clean angular material errors validations.
         this.signupForm.reset();
         Object.keys(this.signupForm.controls).forEach(key => {

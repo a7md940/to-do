@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
 
   userImage;
 
+  progressBarPercentage;
   constructor(private updateImageService: UpdateImageService) { }
 
   ngOnInit() {
@@ -28,9 +29,10 @@ export class ProfileComponent implements OnInit {
     .subscribe( event => {
       console.log(event)
       if(event.type === HttpEventType.UploadProgress){
-        console.log( (event.loaded / event.total) *100 + '%' );
+        this.progressBarPercentage = Math.round((event.loaded / event.total) * 100) + '%';
+      }else if ( event.type === HttpEventType.Response){
+        localStorage.setItem('userImage', event.body.user.userImage); 
       }
-      // localStorage.setItem('userImage', res.user.userImage);
     },
     err => console.log(err.error.msg));
   }

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 
 <input type="checkbox" id="update-checker" >
 <div class="update-to-do">
@@ -21,12 +22,12 @@
     style="display:none;"
     >
 
-    <p style="color:#eee">{{updateAPIErr}}</p>
+    <!-- <p style="color:#eee">{{updateAPIErr}}</p> -->
   </form>
 </div>
 
 
-<div class="todo-container">
+<div class="todo-container" id="todo--container">
   <div class="todo--heading">
     <div class="todo--heading__day">{{day}}</div>
     <div class="todo--heading__date">
@@ -59,7 +60,7 @@
   </div>
 
 <div class="todo--list" *ngIf="isloged.isLoggedIn()">
-  <div  *ngIf="toDoExist else addSometoDo" >
+  <div  *ngIf="toDoExist" >
     <div class="search-input">
         <input type="text" 
         class="search"
@@ -106,6 +107,8 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>
 
 <ng-template #addSometoDo>
     <p style="color: grey;">Add Some TODO.</p>

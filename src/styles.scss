@@ -6,21 +6,14 @@
 @import url('https://fonts.googleapis.com/css?family=Electrolize');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-html{
-  // height:100%;
-}
 
 body{
   min-height:100vh;
-  // overflow-y: scroll;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfb2ff+0,ddd6ff+17,f2efff+42,ddd6ff+100 */
-background: #bfb2ff; /* Old browsers */
-background: -moz-linear-gradient(45deg, #bfb2ff 0%, #ddd6ff 17%, #f2efff 42%, #ddd6ff 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(45deg, #bfb2ff 0%,#ddd6ff 17%,#f2efff 42%,#ddd6ff 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(45deg, #bfb2ff 0%,#ddd6ff 17%,#f2efff 42%,#ddd6ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfb2ff', endColorstr='#ddd6ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-position: relative;
-}
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  position: relative;
+  top:0px
+ }
 
 body::after{
   content: '';
@@ -31,13 +24,23 @@ body::after{
   left:0;
   bottom:0;
   right:0;
-  background-image: url('assets/images/social_media_pattern.png');
-  background-repeat: repeat;
+  // background-image: url('assets/images/social_media_pattern.png');
+  // background-repeat: repeat;
   opacity: .02;
   top: 0;
   z-index: -1;
 }
 
+// bootstrab overriding 
+div[class^="col-"]{
+  padding: 0px !important;
+}
+
+.container-fulid {
+  
+}
+
+// confirm style
 .btn-dialog-close{
   width: 45px;
   min-width: 0px !important;

@@ -1,5 +1,5 @@
-<div class="signin-container">
-    <form #signin [formGroup]="loginForm" (submit)="submitSignin()">
+
+    <!-- <form style="display: none;" #signin [formGroup]="loginForm" (submit)="submitSignin()">
  
       <mat-form-field class="example-full-width">
           <input matInput placeholder="Username" 
@@ -15,7 +15,9 @@
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" 
+          <input 
+          matInput 
+          placeholder="Password" 
           [formControl]="password"
           type="password"
           autocomplete="off"
@@ -42,7 +44,88 @@
          routerLink="/signup"
          >SignUp</button>
       </div>
-    </form>
+    </form> -->
     
-  
+    <div class="login-container">
+      <div class="left-side">
+        <div class="logo">
+          <img class="logo-img" src="../../assets/images/todo_logo.png" routerLink="/" >
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="form-header">
+          <p class="heading-title">Welcome to <strong>Daily Goals</strong> </p>
+          <p class="description--title">we make it easy to everybody to achieve there goals.</p>
+          <div class="border"></div>
+          
+        </div>
+        <div class="form-content">
+          <form #signin [formGroup]="loginForm" (submit)="submitSignin()">
+              <div class="input-fields">
+                  <div 
+                  class="username"
+                  >
+                    <i class="fa fa-user-circle icon" aria-hidden="true"></i>
+          
+                  <input type="text" 
+                  autocomplete="off" 
+                  name="username" 
+                  [ngClass]="{
+                    'input-error' : username.invalid && username.touched,
+                    'username-input': true
+                  }"
+                  placeholder="username"
+                  [formControl]="username"
+                  autocomplete="off"
+                  
+                  >
+                    
+                </div>
+
+                  <div class="password">
+                    <i class="fa fa-key icon" aria-hidden="true"></i>
+                    
+                    <input type="password" 
+                    name="password" 
+                    placeholder="******" 
+                    [ngClass]="{
+                      'password-input': true,
+                      'input-error': password.invalid && password.touched
+                    }"
+                    [formControl]="password"
+                    autocomplete="off"
+                    
+                    >
+                  </div>
+                </div>
+                <mat-error 
+                style="text-align: center; height: 50px; display: block; width: 100%;"
+                 >
+                    <p *ngIf="isAPIError">{{APIError}}</p>
+                    <div *ngIf="username.invalid && username.touched">
+                      <p *ngIf="username.errors.required">username is required.</p>
+                      <p *ngIf="username.errors.minlength">username minlength is {{username.errors.minlength.requiredLength}}.</p>
+                    </div>
+
+                    <div *ngIf="(password.invalid && password.touched) && !(username.invalid && username.touched) ">
+                        <p *ngIf="password.errors.required">password  is required.</p>
+                        <p *ngIf="password.errors.minlength">password minlength is {{password.errors.minlength.requiredLength}}.</p>  
+                    </div>
+
+                </mat-error>
+                <div class="buttons-box">
+
+                    <button class="login"
+                    type="submit"
+                    [disabled]="!loginForm.valid"
+                    >login</button>
+
+                    <button class="create" 
+                    routerLink="/signup"
+                    >Create profile</button>
+          
+                </div>
+          </form>
+        </div>
+      </div>
     </div>

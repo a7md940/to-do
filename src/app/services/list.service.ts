@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IsloggedinService } from './isloggedin.service';
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
 
   constructor(private http:HttpClient, private isloged: IsloggedinService) { }
-  URL = 'api/users/todo';
+  URL = environment.apiURL + 'api/users/todo';
 
   private tokenHeader(){
-    let token = localStorage.getItem('token');
-    let header = new HttpHeaders({['x-auth-token']: token});
-    return header;
+    return new HttpHeaders({['x-auth-token']: localStorage.getItem('token')});
   }
 
   getAllToDos(){

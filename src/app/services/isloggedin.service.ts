@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsloggedinService {
-  readonly apiURL: string = 'http://localhost:3000/' 
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   isLoggedIn(){
     let helper = new JwtHelperService();
@@ -17,11 +16,11 @@ export class IsloggedinService {
     if(!token)
       return false;
     
-      let expirationDate = helper.getTokenExpirationDate(token);
-      let isExpired = helper.isTokenExpired(token);
-      let payload = helper.decodeToken(token);
+    let expirationDate = helper.getTokenExpirationDate(token);
+    let isExpired = helper.isTokenExpired(token);
+    let payload = helper.decodeToken(token);
 
-    return !isExpired; 
+    return !isExpired;
   }
 
   get token (){return localStorage.getItem('token')}
@@ -29,7 +28,7 @@ export class IsloggedinService {
   get currentUser(){
     return {
       user: new JwtHelperService().decodeToken(localStorage.getItem('token')),
-      userImage: localStorage.getItem('userImage')
+      userImage: environment.apiURL + localStorage.getItem('userImage')
    };
   }
 
@@ -38,5 +37,6 @@ export class IsloggedinService {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     localStorage.removeItem('userImage');
+    this.router.navigate(['/']);
   }
 }

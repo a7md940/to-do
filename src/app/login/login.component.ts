@@ -21,11 +21,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
   APIError;
   isAPIError: boolean = false;
+  loginForm:FormGroup;
 
   constructor(private formBuilder: FormBuilder, 
     private loginService: LoginService,
     private router: Router) { }
-  loginForm:FormGroup;
+    
   get username (){
     return this.loginForm.get('username');
   }
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId', res.data.id);
         localStorage.setItem('username', res.data.username);
         localStorage.setItem('userImage', res.data.userImage)
-        this.router.navigate(['']);
+        this.router.navigate(['/todo']);
         
         // reset the form and clean angular material errors validations.
         this.loginForm.reset();

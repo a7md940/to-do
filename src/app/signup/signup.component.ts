@@ -70,7 +70,7 @@ export class SignupComponent implements OnInit {
         Object.keys(this.signupForm.controls).forEach(key => {
           this.signupForm.controls[key].setErrors(null)
         });
-        this.router.navigate(['']);
+        this.router.navigate(['/todo'])
       }
     }, err =>{
       this.APIError = true;

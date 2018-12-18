@@ -22,6 +22,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './alert/alert.component';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     FooterComponent,
     ProfileComponent,
+    HeaderComponent,
     
   ],
   imports: [
@@ -47,7 +49,8 @@ import { FooterComponent } from './footer/footer.component';
     MaterialModule,
     // Router Module..
     RouterModule.forRoot([
-      {path: '', component: ListComponent},
+      {path: '', component: HeaderComponent},
+      {path: 'todo', component: ListComponent},
       {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
       {path: 'signup', component: SignupComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]}

@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800,900');
+
+.login-container{
+  display:flex;
+  background: #fff;
+  min-height: 100vh;
+  & > * {
+    font-family: 'Montserrat', sans-serif !important;
+  }
+}
+
+
+
+.login-container > div{
+  flex:1;
+  padding: 1.5rem 2rem;
+}
+
+.left-side{
+  background-image: url(https://images.unsplash.com/photo-1523634921619-37ce98c1877f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+    background-size: cover;
+    position: relative;
+    background-position: left;
+}
+// .left-side::before{
+//   content:'';
+//   position: absolute;
+//   top:0px;
+//   left:0px;
+//   bottom:0px;
+//   right:0px;
+//   background: rgba(0,0,0,.3);
+// }
+
+.left-side .logo{
+    max-width: 200px;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    outline:none;
+    &:focus,
+    &:active{
+      outline: none;
+    }
+    &::before{
+      content: '';
+      position: absolute;
+      transition: .3s all;
+      width: 0%;
+      left:0px;
+      bottom:0px;
+      padding: 0rem;
+      background: white;
+      z-index: 1;
+      min-height: 100%;
+    }
+    &:hover::before{
+      width: 150%;
+      padding: 1rem;
+    }
+
+
+    img{
+      position: relative;
+      z-index: 2;
+      width:100%;
+      &:focus,
+    &:active{
+      outline: none;
+    }
+    }
+    
+}
+
+.right-side{
+  padding: 5rem 5rem 1rem 5rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-side .form-header .heading-title{
+  font-size: 2rem;
+}
+.right-side .form-header .heading-title strong{
+  color: #0033ff;
+}
+
+.right-side .form-header .description--title{
+  color: #9a9a9a;
+  font-size: 1.2rem;
+  width: 80%;
+  margin: 1rem 0rem;
+}
+
+.right-side .form-header .border{
+  height: 5px;
+  width: 100px;
+  background: #0033ff;
+  border-radius: 5px;
+}
+
+.right-side .form-content{
+  margin: 1rem 0rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side .form-content form{
+    width: 100%;
+}
+
+.right-side .form-content .input-fields{
+  border: 1px solid #DFE1E3;
+  border-radius: 15px;
+  overflow:hidden;
+  margin: 2rem 0rem;
+  width: 100%;
+}
+
+.right-side .form-content .input-fields > div{
+  position: relative;
+}
+
+.right-side .form-content .input-fields > div input{
+  padding: 1.7rem 5rem;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -.5px;
+  border:none;
+  width: 100%;
+}
+
+.right-side .form-content .input-fields > div > input:focus,
+.right-side .form-content .input-fields > div > input:active{
+  outline: none;
+  box-shadow: none;
+}
+
+.right-side .form-content .input-fields > div input::-webkit-input-placeholder{
+  color: #bdbfc1;
+  font-size: 1.2rem;
+  font-family: 'Montserrat';
+}
+
+.right-side .form-content .input-fields > div input.username-input{
+  border-bottom: 1px solid #DFE1E3;
+}
+
+.right-side .form-content .input-fields > div .password-input{
+  letter-spacing: 5px;
+  color: black;
+}
+
+.icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #C9CACA;
+  left: 2rem
+}
+
+.buttons-box{
+  width:100%;
+  display:flex;
+}
+
+.buttons-box button{
+  flex:1;
+  margin: 0rem .5rem;
+  padding: 1.5rem 1.8rem;
+  border:none;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Montserrat';
+  font-size: 1.1rem;
+  border-radius: 5px;
+  outline:none;
+  cursor:pointer;
+}
+
+.login{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6c8eff+0,4146ff+100 */
+background: rgb(108,142,255); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(108,142,255,1) 0%, rgba(65,70,255,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(108,142,255,1) 0%,rgba(65,70,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(108,142,255,1) 0%,rgba(65,70,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6c8eff', endColorstr='#4146ff',GradientType=1 ); /* IE6-9 */
+  box-shadow: -2px 4px 10px 5px rgba(106, 218, 255, 0.1607843137254902);
+
+}
+
+.login:disabled{
+  background: grey;
+  box-shadow: -2px 4px 20px 1px rgba(0, 0, 0, 0.1607843137254902);
+
+}
+
+.login:disabled:hover{
+  color:    #fff!important;
+  background:grey;
+}
+
+.login:hover{
+  color: #0033ff !important;
+  background: #fff;
+}
+
+.create{
+  background: #fff;
+  color:#0033ff !important;
+  box-shadow: -2px 8px 20px 3px rgba(0,0,0,.05);
+  border-radius:8px;
+  transition: .4s all;
+}
+
+.create:hover{
+  background: #0033ff;
+  color :#fff !important;
+}
+
+.input-error::-webkit-input-placeholder{
+  color: red !important;
+  opacity: .5;
+}

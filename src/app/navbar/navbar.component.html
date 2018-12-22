@@ -1,44 +1,48 @@
 
-<nav>
-    <ul class="nav-left">
-        <div class="logo" routerLink="/" style="cursor: pointer">
-            <img src="../../assets/images/todo_logo.png" >
-        </div>
-        <span *ngIf="loggedIn.isLoggedIn()">hi, {{loggedIn.currentUser.user.username}} </span>
-        
-    </ul>
-
-    <div class="nav-right">
-
-        <ul>
-            <li *ngIf="!loggedIn.isLoggedIn()"><a class="log-in-btn" routerLink="/login">Login</a></li>
-            <li *ngIf="!loggedIn.isLoggedIn()"><a class="sign-up-btn" routerLink="/signup">Sign up</a></li>
-        </ul>
-
-        <div *ngIf="loggedIn.isLoggedIn()" class="settings">
-            <a class="settings-toggler"
-            (click)="openSettings()">
-                settings
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </a>
-            <ul class="settings-drop-down" *ngIf="settings">
-                <li>
-                    <a class="profile-picture" 
-                    (click)="openSettings()"
-                    routerLink="/profile">profile picture</a>
-                </li>
-                <li>
-                    <a (click)="logout($event)"
-                        class="log-out"
-                        >logout</a>
-                </li>
-            </ul>
+<div id="nav" class="container">
+<nav class="row">
+    <div class="col-12 d-flex justify-content-between">
+        <ul class="nav-left">
+                <div class="logo" routerLink="/" style="cursor: pointer">
+                    <img src="../../assets/images/todo_logo.png" >
+                </div>
+                <span *ngIf="loggedIn.isLoggedIn()">hi, {{loggedIn.currentUser.user.username}} </span>
                 
-            <div class="image-profile">
-                <img [src]="loggedIn.currentUser.userImage" alt="user image">
+            </ul>
+        
+            <div class="nav-right d-flex align-items-center">
+        
+                <ul *ngIf="!loggedIn.isLoggedIn()">
+                    <li *ngIf="!loggedIn.isLoggedIn()"><a class="log-in-btn" routerLink="/login">Login</a></li>
+                    <li *ngIf="!loggedIn.isLoggedIn()"><a class="sign-up-btn" routerLink="/signup">Sign up</a></li>
+                </ul>
+        
+                <div *ngIf="loggedIn.isLoggedIn()" class="settings">
+                    <a class="settings-toggler mr-3"
+                    (click)="openSettings()">
+                        settings
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="settings-drop-down" *ngIf="settings">
+                        <li>
+                            <a class="profile-picture" 
+                            (click)="openSettings()"
+                            routerLink="/profile">profile picture</a>
+                        </li>
+                        <li>
+                            <a (click)="logout($event)"
+                                class="log-out"
+                                >logout</a>
+                        </li>
+                    </ul>
+                        
+                    <div class="image-profile">
+                        <img [src]="loggedIn.currentUser.userImage" alt="user image">
+                    </div>
+                </div>
+        
             </div>
-        </div>
-
-    </div>
-    
+    </div>    
 </nav>
+
+</div>

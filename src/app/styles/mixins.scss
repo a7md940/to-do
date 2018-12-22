@@ -3,3 +3,9 @@
       @content;
     }
   }
+
+@mixin lgscreen {
+  @media (min-width: 990px){
+    @content;
+  }
+}

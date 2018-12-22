@@ -6,6 +6,15 @@
 @import url('https://fonts.googleapis.com/css?family=Electrolize');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+@import './app/styles/mixins.scss';
+
+
+:root{
+    @include mobile(){
+        font-size: 10px;
+    }
+}
+
 
 body{
   min-height:100vh;

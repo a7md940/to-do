@@ -1,10 +1,11 @@
-.singup-page{}
+@import '../styles/mixins.scss';
+
 .logo-img{
   width:100px !important;
   padding-top: .5rem;
   padding-bottom: .5rem;
   outline: none;
-
+  
   img{
     width:100%;
     cursor: pointer;
@@ -17,7 +18,14 @@
 
   .image-container{
     .heading{
+      @include mobile(){
+        margin-top:3rem;
+      }
       p{
+
+        @include mobile(){
+          width:53%;
+        }
         font-size: 1.8rem;
         span{
           color: #03f;
@@ -49,7 +57,7 @@
         input{
           border-radius: 5px;
           border: 1px solid #dfe1e3;
-          padding: 1.5rem 2rem;
+          padding: 0.5rem 2rem;
           margin: .5rem auto;
           width:100%;
           outline:none;
@@ -67,6 +75,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 
+    
     .signup{
     margin: 0 .5rem;
     padding: 1.5rem 0rem;
@@ -104,8 +113,13 @@
 .disabled{
   background: #6c8eff !important;
   opacity: .8;
+  cursor: not-allowed !important;
 }
 
 .input-error{
   border-color: red !important;
+}
+
+.input-success{
+  border-color: green !important;
 }

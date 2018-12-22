@@ -1,17 +1,11 @@
-.container-fluid{
 
-    width: 100% !important;
-    .navbar-container{
-        padding: 0px !important;
-    }
-}
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
     position: relative;
-    padding: 0rem 3rem;
+    padding: 0rem 1.2rem;
 
     & > div{
         display:flex;
@@ -96,7 +90,7 @@ nav{
         height: 50px;
         position: relative;
         border-radius: 50%;
-        border: 3px solid red;
+        border: 2px solid #2c67fc;
         overflow: hidden;
        img{
             position: absolute;

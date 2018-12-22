@@ -21,16 +21,11 @@
     background-size: cover;
     position: relative;
     background-position: left;
+  @media (min-width: 0px) and (max-width: 990px){
+    display:none;
+  }
 }
-// .left-side::before{
-//   content:'';
-//   position: absolute;
-//   top:0px;
-//   left:0px;
-//   bottom:0px;
-//   right:0px;
-//   background: rgba(0,0,0,.3);
-// }
+
 
 .left-side .logo{
     max-width: 200px;

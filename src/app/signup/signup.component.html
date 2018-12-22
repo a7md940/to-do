@@ -6,7 +6,7 @@
         <img class="logo-img" src="../../assets/images/todo_logo.png" routerLink="/" >
     </div>
   </div>
- <div class="signup-container row align-items-center">
+ <div class="signup-container pb-5 row align-items-center">
 
       <div class="image-container col-12 col-lg-6">
         <div class="heading">
@@ -15,7 +15,7 @@
           </p>
         </div>
         <div class="illustraion-img">
-            <img src="https://i.ibb.co/CMgpXPY/undraw-to-do-list-a49b.png" alt="">
+            <img src="./../../assets/images/signup.svg" alt="">
         </div>
       </div>
       
@@ -32,7 +32,8 @@
             autocomplete="off"
             [errorStateMatcher]="matcher"
             [ngClass]="{
-              'input-error': username.touched && username.invalid
+              'input-error': username.touched && username.invalid,
+              'input-success': !username.invalid
             }"
             >
            
@@ -47,7 +48,8 @@
                autocomplete="off"
                [errorStateMatcher]="matcher"
                [ngClass]="{
-                'input-error': email.touched && email.invalid
+                'input-error': email.touched && email.invalid,
+                'input-success': !email.invalid
               }"
                >
           </div>
@@ -60,7 +62,8 @@
             autocomplete="off"
             [errorStateMatcher]="matcher"
             [ngClass]="{
-              'input-error': password.touched && password.invalid
+              'input-error': password.touched && password.invalid,
+              'input-success': !password.invalid
             }">
           </div>
 

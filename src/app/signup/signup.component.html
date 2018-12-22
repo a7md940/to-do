@@ -1,60 +1,125 @@
-<div class="signup-container">
-  <form #signup [formGroup]="signupForm" (submit)="submitSignUp()">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Username" 
-        formControlName="username"
-        autocomplete="off"
-        [errorStateMatcher]="matcher">
-        <mat-error *ngIf="username.hasError('minlength') && !username.hasError('required')">
-          username should be minimum 3 charachters.
-        </mat-error>
-        <mat-error *ngIf="username.hasError('required')">
-          Username is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" 
+
+ <div class="container singup-page">
+  <div class="row">
+      <div class="logo-img col-12" routerLink="/">
+        <img class="logo-img" src="../../assets/images/todo_logo.png" routerLink="/" >
+    </div>
+  </div>
+ <div class="signup-container row align-items-center">
+
+      <div class="image-container col-12 col-lg-6">
+        <div class="heading">
+          <p>
+            Get started with <span>Daily Goals</span>, and sign up now.
+          </p>
+        </div>
+        <div class="illustraion-img">
+            <img src="https://i.ibb.co/CMgpXPY/undraw-to-do-list-a49b.png" alt="">
+        </div>
+      </div>
+      
+      <div class="form-container col-12 col-lg-6">
+       
+        <form #signup [formGroup]="signupForm" (submit)="submitSignUp()">
+            
+          <div class="username">
+            <input type="text" 
+            class="username-input" 
+            matInput 
+            placeholder="Username" 
+            formControlName="username"
+            autocomplete="off"
+            [errorStateMatcher]="matcher"
+            [ngClass]="{
+              'input-error': username.touched && username.invalid
+            }"
+            >
+           
+          </div>
+          <div class="email">
+            <input 
+               type="email" 
+               class="email-input" 
+               matInput 
+               placeholder="Email" 
                [formControl]="email"
                autocomplete="off"
-               [errorStateMatcher]="matcher">
-        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="email.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Password" 
-        [formControl]="password"
-        type="password"
-        autocomplete="off"
-        [errorStateMatcher]="matcher">
-        <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
-            Password should be minimum 6 charachters.
-          </mat-error>
-        <mat-error *ngIf="password.hasError('required')">
-          Password is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-<div *ngIf="APIError"> 
-  <mat-error>
-    {{resError}}
-  </mat-error>
-</div>
-    <div>
-      <button mat-raised-button color="primary"
-       type="submit"
-       [disabled]="!signupForm.valid"
-       >SignUp</button>
-       <button mat-raised-button color="accent"
-       type="button"
-       routerLink="/login"
-       >Login</button>
-    </div>
-  </form>
-  
+               [errorStateMatcher]="matcher"
+               [ngClass]="{
+                'input-error': email.touched && email.invalid
+              }"
+               >
+          </div>
+          <div class="password">
+            <input type="password" 
+            class="password-input"  
+            matInput placeholder="Password" 
+            [formControl]="password"
+            type="password"
+            autocomplete="off"
+            [errorStateMatcher]="matcher"
+            [ngClass]="{
+              'input-error': password.touched && password.invalid
+            }">
+          </div>
 
-  </div>
+          <div *ngIf="APIError"> 
+              <mat-error>
+                {{resError}}
+              </mat-error>
+          </div>
+
+          <div class="all-errors">
+
+              <div class="username-errors"
+              *ngIf="username.touched && username.invalid"
+              >
+                <mat-error *ngIf="username.hasError('minlength') && !username.hasError('required')">
+                  username should be minimum 3 charachters.
+                </mat-error>
+                <mat-error *ngIf="username.hasError('required')">
+                  Username is <strong>required</strong>
+                </mat-error>
+              </div>
+
+              <div class="username-errors"
+              *ngIf="(email.touched && email.invalid) && !(username.touched && username.invalid)"
+              >
+                <mat-error *ngIf="email.invalid && !email.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </div>
+
+              <div class="username-errors"
+              *ngIf="(password.touched && password.invalid) && !(email.touched && email.invalid) && !(username.touched && username.invalid)"
+              >
+              <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+                  Password should be minimum 6 charachters.
+                </mat-error>
+              <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+              </div>
+
+          </div>
+
+          <div class="buttons">
+            <button class="signup" 
+            type="submit" 
+            [disabled]="!signupForm.valid"
+            [ngClass]="{
+              'disabled': !signupForm.valid
+            }"
+            >SingUp</button>
+            <span>or</span>
+            <a class="signin" routerLink="/login">signin</a>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+ </div>

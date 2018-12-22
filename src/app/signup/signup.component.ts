@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       email: new FormControl('', [
         Validators.required,
-        Validators.email,
+        Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/),
       ]),
       username: new FormControl('',[
         Validators.required,

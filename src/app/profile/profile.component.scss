@@ -6,25 +6,7 @@
     .image-form{
         display: flex;
     }
-    .progress-bar-container{
-        position: relative;
-        width: 100%;
-
-        .progress-number{
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: bold;
-            text-shadow: -1px 3px 4px rgba(0,0,0,.1);
-            color: #6500ff;
-        }
-        .progress-bar{
-            background: #6500ff;
-            border-radius: 8px;
-            height: 12px;
-            position: absolute;
-            left: 0;
-        }
-    }
+    
 
     .image-view-box{
         margin: .6rem 0rem;
@@ -41,14 +23,297 @@
     }
 }
 
-// spinner loading
 
-.loading-spinner{
-    & > svg{
-        transform: scale(2);
+// Card style..
+
+.user-info-container{
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    width: 100%;
+    margin: 5rem;
+    box-shadow: 0px 8px 25px 3px rgba(200,4,239,.10);
+  }
+  .image-reader{
+    position: relative;
+    
+    &::after{
+        content: '';
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index: 1;
+        
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c804ef+40,000000+100&0+41,0.39+100 */
+        background: -moz-linear-gradient(top, rgba(200,4,239,0) 40%, rgba(197,4,235,0) 41%, rgba(0,0,0,0.39) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(200,4,239,0) 40%,rgba(197,4,235,0) 41%,rgba(0,0,0,0.39) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(200,4,239,0) 40%,rgba(197,4,235,0) 41%,rgba(0,0,0,0.39) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c804ef', endColorstr='#63000000',GradientType=0 ); /* IE6-9 */
     }
+      img{
+        width:100%;
+        }
+    .username-info{
+      position: absolute;
+      z-index:2;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      strong{
+        color:white;
+      }
+    }
+    
+    .add-icon{
+        z-index:2;
+        position:absolute;
+        left: 50%;
+        bottom: -25px;
+        transform: translateX(-50%) scale(1);
+        font-size: 3rem;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        color: white;  
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,ed0488+100 */
+        background: rgb(255,48,25); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(255,48,25,1) 0%, rgba(237,4,136,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,48,25,1) 0%,rgba(237,4,136,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,48,25,1) 0%,rgba(237,4,136,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#ed0488',GradientType=0 ); /* IE6-9 */
+        box-shadow: 0px 8px 15px 1px rgba(255,48,25,.4);
+        cursor:pointer;
+        transition: .2s all;
+      
+      &::after{
+        content:'+';
+        font-weight: light;
+      }
+      
+      &::before{
+        content: 'Update Image';
+        font-size: .8rem;
+        line-height: 30px;
+        width: 100px;
+        height: 30px;
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,.95);
+        border-radius:6px;
+        opacity: 0;
+        transition: .3s all;
+      }
+      
+      &:hover{
+        background-position-y: -50px;
+        box-shadow: 0px 5px 20px 1px rgba(255,48,25,.5);
+        
+        &::before{
+          opacity: 1;
+        }
+      }
+      
+      &:active{
+        transform: translateX(-50%) scale(.9);
+      }
+    
+      
+    }
+    margin-bottom: 3rem;
+  }
+  
+  .info-details{
+    width:100%;
+    
+    ul{
+      li{
+        margin:0rem .5rem;
+        flex:1;
+        
+        .item{
+          display:flex;
+          flex-direction: column;
+          align-items:center;
+          i{
+            font-style: unset;   
+            font-size: 0.8rem;
+            color: #a9a9a9;
+          }
+          strong{
+            font-size: 3rem;
+            color: #a8a8a8;
+            font-weight:normal;
+            line-height: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+
+//   upload image form styling
+
+.section-container{
+    z-index: 10 ;
+    background: #46468d;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    
+    // background image icons
+    &::after{
+        content:'';
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-image: url('../../assets/images/social_media_pattern.png');
+        opacity: .105;
+        z-index: 9;
+        background-size: cover;
+    }
+
+    // close icon
+    .fa.fa-times{
+        position: absolute;
+        z-index: 11;
+        right: 30px;
+        top: 30px;
+        font-size: 3rem;
+        color: white;
+        cursor: pointer;
+      }
+  }
+  .upload-form-container{
+    background: #757CF9;
+    padding: 0rem !important;
+    height: unset;
+    position: relative;
+    z-index: 11;
+    transition: .8s height;
+    & div{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+    .image-view{
+      padding: 2rem 0rem;
+      
+      // progres bar
+      .progress-bar-container{
+        position: relative;
+        width: 100%;
+
+        .progress-number{
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: -1px 3px 4px rgba(0,0,0,.1);
+            color: white;
+            margin: 0rem !important;
+        }
+        .progress-bar{
+            background-color: #00ff7e !important;
+            height: 15px;
+        }
+    }
+
+      & > p{
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+        margin: 0rem 0rem 2rem 0rem;
+      }
+      .image-render{
+        
+        // pick image
+        .pick-image{
+          width: 200px;
+          height: 200px;
+          border: 10px dashed rgba(255,255,255,.7);
+          border-radius:10px;
+          cursor:pointer;
+          position: relative;
+          transition: .3s all;
+          overflow: hidden;
+          
+          &::before{
+            content: 'Pick image';
+            color: white;
+            position: absolute;
+            font-size: 1.5rem;
+            opacity:0;
+            transition: .3s all;
+            font-weight: bold;
+          }
+          
+          &::after{
+            content: '+';
+            font-size: 6rem;
+            transition: .3s all;
+            color:rgba(255,255,255,.4);
+          }
+          
+          &:hover{
+            border: 10px dashed rgba(255,255,255,1);
+            &::after{
+              opacity:0;
+            }
+            
+            &::before{
+              opacity: 1;
+            }
+          }
+          // image
+          img{
+            width: 232px;
+            position: absolute; 
+            z-index: 15;
+            background: white;
+          }
+        }
+        
+      }
+    }
+    
+    // buttons-section
+    .buttons-section{
+      background: white;
+      width:100%;
+      padding: 2rem 0rem;
+      
+      button{
+        background: #FF7CAC;
+        color: white;
+        border: none;
+        padding: 1rem 3rem;
+        font-size: 1.8rem;
+        font-weight:bold;
+        cursor: pointer;
+        
+        &:hover{
+          background: #e56793;
+        }
+      }
+    }
+  }
+
+//   update-success class
+.update-success{
+    margin: 0rem !important;
+    padding: 0rem !important;
+    color: rgb(35, 224, 114);
+    margin-bottom: 1rem !important;
+    font-weight: bold;
 }
-svg path,
-svg rect{
-  fill: #255fea;
-}
+
+//   end upload image form stylinh

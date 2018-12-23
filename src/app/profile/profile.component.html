@@ -1,61 +1,127 @@
 <app-navbar></app-navbar>
 
-<!-- {{(profile.getUserTodos() | async).allTodos.length}}-->
-<p>
-  <strong>All Todos.</strong>
-  {{allTodos?.length}} 
-</p>
-
-<p>
-  <strong>Completed Todos.</strong>
-  {{completedTodos?.length}}
-</p>
-
-<p>
-  <strong>{{loggedIn.currentUser.user.username}}</strong>
-</p>
-
-<div class="image">
-  <img [src]="loggedIn.currentUser.userImage" alt="" class="w-25">
+<div class="container" *ngIf="loggedIn.currentUser.userImage">
+  <div class="row">
+    <div class="col-12 col-lg-6 offset-lg-3 d-flex justify-content-center">
+      <div class="user-info-container d-flex flex-column align-items-center">
+        <div class="image-reader text-center">
+          <img [src]="loggedIn.currentUser.userImage" alt="">
+          <div class="username-info">
+            <strong>{{loggedIn.currentUser.user.username}}</strong>
+          </div>
+          <div class="add-icon" (click)="this.showImageForm = true;"></div>
+        </div>
+        <div class="info-details pb-4">
+          <ul class="d-flex list-unstyled justify-content-between">
+            <li>
+              <div class="item">
+                <i>Completed</i>
+              <strong>{{completedTodos?.length}}</strong>
+              </div>
+            </li>
+            <li>
+              <div class="item">
+                <i>Pending</i>
+              <strong>{{allTodos?.length - completedTodos?.length}}</strong>
+              </div>
+              
+            </li>
+            <li>
+              <div class="item">
+                <i>All</i>
+              <strong>{{allTodos?.length}}</strong>
+              </div>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="profile-container">
+<!-- upload image form -->
+<div class="image-upload-form" *ngIf='showImageForm'>
+  <div class="container-fluid section-container">
+
+    <!-- close icon -->
+    <i class="fa fa-times" aria-hidden="true" (click)="this.showImageForm = false;"></i>
+
+    <!-- row -->
+    <div class="row h-100 align-items-center">
+      <form class="
+      col-10 
+      offset-1 
+      col-md-6 
+      offset-md-3 
+      d-flex 
+      flex-column 
+      align-items-center 
+      justify-content-center 
+      upload-form-container"
+      (submit)="updateImageProfile($event, image)"
+      >
+        
+        <div class="image-view">
+
+          <p>Change profile picture</p>
+
+          <div class="image-render">
+
+            <!-- pick image zone -->
+            <div class="pick-image" (click)="image.click()">
+              <!-- input to triggre when pock zone clicked -->
+              <input (change)="onInputChange(image)" 
+              #image 
+              type="file" 
+              name="image"
+              hidden>
+              <img *ngIf='userImage' [src]="userImage" alt="">  
+            </div>
+
+            
+          </div>
+
+          <!-- progress bar -->
+          <div class="progress-bar-container" style="width: 100%;">
+              <p class="progress-number" >{{progressBarPercentage}}</p>
+              <div class="progress-bar" 
+              [style.width]="progressBarPercentage"
+              ></div>
+              
+          </div>
+
+        </div>
+        
+        <div class="buttons-section">
+
+          <!-- image type error -->
+          <p *ngIf="invalidFileTypeErr" style="color:red;"> invalid file type.</p>
+
+          <!-- image updated successfully. -->
+          <p class="text-center update-success" *ngIf="progressBarPercentage == (100+'%')">
+            Update done, window will close automatically.
+          </p>
+
+          <div class="upload-button">
+            <button type="submit">Upload</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- upload image form -->
+
+
+<!-- Old image form -->
+<!-- <div class="profile-container">
   <form class="image-form" (submit)="updateImageProfile($event, image)">
     <input (change)="onInputChange(image)" #image type="file" name="image" id="">
     <button type="submit">update image</button>
   </form>
-
-  
-  <div class="progress-bar-container" *ngIf="progressBarPercentage">
-    <!-- <div class="loading-spinner">
+</div> -->
 
 
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-  width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
- <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
-   <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
- </rect>
- <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
-   <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
- </rect>
- <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
-   <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-   <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
- </rect>
-</svg>
 
-    </div> -->
-
-    <p class="progress-number">{{progressBarPercentage}}</p>
-    <div class="progress-bar" [style.width]="progressBarPercentage"></div>
-  </div>
-  <div class="image-view-box" *ngIf="userImage">
-    <img [src]="userImage" alt="">
-  </div>
-</div>
 <app-footer></app-footer>

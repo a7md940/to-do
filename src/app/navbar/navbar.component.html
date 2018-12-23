@@ -6,7 +6,11 @@
                 <div class="logo" routerLink="/" style="cursor: pointer">
                     <img src="../../assets/images/todo_logo.png" >
                 </div>
-                <span *ngIf="loggedIn.isLoggedIn()">hi, {{loggedIn.currentUser.user.username}} </span>
+                <a *ngIf="loggedIn.isLoggedIn()" routerLink="/todo"
+                style="
+                    font-weight: bold;
+                "
+                >TODOs</a>
                 
             </ul>
         

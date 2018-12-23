@@ -64,19 +64,22 @@
         
         <div class="image-view">
 
-          <p>Change profile picture</p>
+          <p>Change profile picture</p> 
 
           <div class="image-render">
 
             <!-- pick image zone -->
             <div class="pick-image" (click)="image.click()">
-              <!-- input to triggre when pock zone clicked -->
+              
+              <!-- Hidden input to triggre when pock zone clicked -->
               <input (change)="onInputChange(image)" 
               #image 
               type="file" 
               name="image"
-              hidden>
-              <img *ngIf='userImage' [src]="userImage" alt="">  
+              hidden
+              accept="image/png,image/jpg,image/jpeg,image/bmb,image/gif"
+              >
+              <img *ngIf='userImage' [src]="userImage" alt="user picture">  
             </div>
 
             

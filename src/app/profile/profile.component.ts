@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UpdateImageService } from '../services/user/update-image.service';
 import { HttpEventType } from '@angular/common/http';
+import { IsloggedinService } from '../services/isloggedin.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +11,21 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
 
+  allTodos;
+  completedTodos;
+
   userImage;
 
   progressBarPercentage;
-  constructor(private updateImageService: UpdateImageService) { }
+  constructor(public profile: UpdateImageService, public loggedIn: IsloggedinService) { }
 
   ngOnInit() {
 
-    
+    this.profile.getUserTodos().subscribe( (res:any)=>{
+      console.log(res);
+      this.allTodos = res.allTodos;
+      this.completedTodos = res.completedTodo;
+    })
   }
 
   updateImageProfile(e, image){
@@ -25,7 +33,7 @@ export class ProfileComponent implements OnInit {
     const file = image.files[0];
     console.log(file);
 
-    this.updateImageService.updateUserImage(image.files[0])
+    this.profile.updateUserImage(image.files[0])
     .subscribe( event => {
       console.log(event)
       if(event.type === HttpEventType.UploadProgress){
@@ -34,7 +42,7 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem('userImage', event.body.user.userImage); 
       }
     },
-    err => console.log(err.error.msg));
+    err => console.log(err));
   }
 
   onInputChange(image){

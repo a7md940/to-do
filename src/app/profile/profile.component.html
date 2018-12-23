@@ -1,6 +1,23 @@
 <app-navbar></app-navbar>
 
+<!-- {{(profile.getUserTodos() | async).allTodos.length}}-->
+<p>
+  <strong>All Todos.</strong>
+  {{allTodos?.length}} 
+</p>
 
+<p>
+  <strong>Completed Todos.</strong>
+  {{completedTodos?.length}}
+</p>
+
+<p>
+  <strong>{{loggedIn.currentUser.user.username}}</strong>
+</p>
+
+<div class="image">
+  <img [src]="loggedIn.currentUser.userImage" alt="" class="w-25">
+</div>
 
 <div class="profile-container">
   <form class="image-form" (submit)="updateImageProfile($event, image)">

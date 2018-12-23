@@ -37,9 +37,8 @@
             autocomplete="off"
             [errorStateMatcher]="matcher"
             [ngClass]="{
-              'input-error': username.touched && username.invalid,
-              'input-success': !username.invalid,
-              'input-error': username.errors?.unique
+              'input-error': (username.touched && username.invalid) || username.errors?.unique,
+              'input-success': !username.invalid
             }"
             >
            
@@ -58,9 +57,8 @@
                autocomplete="off"
                [errorStateMatcher]="matcher"
                [ngClass]="{
-                'input-error': email.touched && email.invalid,
-                'input-success': !email.invalid,
-                'input-error': email.errors?.uniqueEmail
+                'input-error': (email.touched && email.invalid) || email.errors?.uniqueEmail,
+                'input-success': !email.invalid
               }"
                >
           </div>

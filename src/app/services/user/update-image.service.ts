@@ -18,7 +18,7 @@ export class UpdateImageService {
       formData.append('image', image);
 
       if(this.loggedIn.isLoggedIn()){
-        const headers = new HttpHeaders({['x-auth-token']: this.loggedIn.token});
+        const headers = new HttpHeaders({['x-auth-token']: localStorage.getItem('token')});
 
         const updateImageAPI: Observable<any> = this.http.put(
           environment.apiURL + 'api/users/image-profile', 
@@ -31,5 +31,9 @@ export class UpdateImageService {
 
         return updateImageAPI;
       }
+    }
+
+    getUserTodos(){
+      return this.http.get(environment.apiURL + 'api/user/?userId='+ localStorage.getItem('userId'));
     }
 }

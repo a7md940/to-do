@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { ListService } from './services/list.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { ProfileGuard } from './services/profile-guard.service';
+import { LandingPageGuard } from './services/landingPage.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -48,7 +49,7 @@ import { HeaderComponent } from './header/header.component';
     MaterialModule,
     // Router Module..
     RouterModule.forRoot([
-      {path: '', component: HeaderComponent},
+      {path: '', component: HeaderComponent, canActivate: [LandingPageGuard]},
       {path: 'todo', component: ListComponent},
       {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
       {path: 'signup', component: SignupComponent, canActivate: [AuthGuard]},
@@ -57,7 +58,8 @@ import { HeaderComponent } from './header/header.component';
   ],
   providers: [
     ListService,
-    AuthGuard
+    AuthGuard,
+    LandingPageGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [ListComponent, AlertComponent]

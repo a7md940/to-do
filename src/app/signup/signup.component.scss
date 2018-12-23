@@ -54,6 +54,10 @@
         margin: 0 auto;
         text-align:center;
         
+        & > div{
+          position: relative;
+          // overflow: hidden;
+        }
         input{
           border-radius: 5px;
           border: 1px solid #dfe1e3;
@@ -121,5 +125,37 @@
 }
 
 .input-success{
-  border-color: green !important;
+  border-color: #8aff8a !important;
+}
+
+
+// @keyframes xIn {
+//   0%{transfrom: translate(-50%); background: red}
+//   50%{transfrom: translate(0%); background: blue}
+//   100%{transfrom: translate(100%);  background: yellow}
+
+// }
+.not-available{
+  position: absolute;
+  top: -0.5rem;
+  color: red;
+  font-size: 0.7rem;
+  // transform: translateX(-100%);
+  // animation: xIn 1s forwards ;
+}
+
+// async validation pending icon
+.fa.fa-spinner{
+  transform: rotate(360deg);
+  animation: rotate 1s;
+      animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg)
+  }
+  100% { transform: rotate(360deg)}
+
 }

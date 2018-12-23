@@ -3,6 +3,9 @@ import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuil
 import {ErrorStateMatcher} from '@angular/material/core';
 import { SignupService } from '../services/signup.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Unique } from './unique.asyncValidator';
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,7 +27,9 @@ export class SignupComponent implements OnInit {
   resError;
   constructor(private formBuilder: FormBuilder, 
     private signUpService: SignupService,
-    private router: Router) { }
+    private router: Router,
+    private http: HttpClient
+    ) { }
   signupForm:FormGroup;
   get username (){
     return this.signupForm.get('username');
@@ -38,14 +43,19 @@ export class SignupComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit() { 
+
     this.signupForm = this.formBuilder.group({
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/),
+      ],[
+        Unique.UniqueEmail
       ]),
       username: new FormControl('',[
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+      ],[
+        Unique.UniqueUsername
       ]),
       password:new FormControl('',[
         Validators.required,

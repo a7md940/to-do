@@ -24,8 +24,13 @@
         <form #signup [formGroup]="signupForm" (submit)="submitSignUp()">
             
           <div class="username">
+            <i class="fa fa-spinner" *ngIf="username.pending"></i>
+            <label 
+            *ngIf="username.errors?.unique"
+            class="not-available">username is not available.</label>
             <input type="text" 
             class="username-input" 
+            
             matInput 
             placeholder="Username" 
             formControlName="username"
@@ -33,12 +38,17 @@
             [errorStateMatcher]="matcher"
             [ngClass]="{
               'input-error': username.touched && username.invalid,
-              'input-success': !username.invalid
+              'input-success': !username.invalid,
+              'input-error': username.errors?.unique
             }"
             >
            
           </div>
           <div class="email">
+              <i class="fa fa-spinner" *ngIf="email.pending"></i>
+              <label 
+              *ngIf="email.errors?.uniqueEmail"
+              class="not-available">email is already exist.</label>
             <input 
                type="email" 
                class="email-input" 
@@ -49,7 +59,8 @@
                [errorStateMatcher]="matcher"
                [ngClass]="{
                 'input-error': email.touched && email.invalid,
-                'input-success': !email.invalid
+                'input-success': !email.invalid,
+                'input-error': email.errors?.uniqueEmail
               }"
                >
           </div>
@@ -84,6 +95,7 @@
                 <mat-error *ngIf="username.hasError('required')">
                   Username is <strong>required</strong>
                 </mat-error>
+
               </div>
 
               <div class="username-errors"

@@ -101,6 +101,9 @@
           <!-- image type error -->
           <p *ngIf="invalidFileTypeErr" style="color:red;"> invalid file type.</p>
 
+          <!-- image type error -->
+          <p *ngIf="insertImage" style="color:red;"> You have to insert an image to upload.</p>
+
           <!-- image updated successfully. -->
           <p class="text-center update-success" *ngIf="progressBarPercentage == (100+'%')">
             Update done, window will close automatically.

@@ -22,7 +22,9 @@
                 </ul>
         
                 <div *ngIf="loggedIn.isLoggedIn()" class="settings">
-                    <a class="settings-toggler mr-3"
+                    <a 
+                    class="settings-toggler mr-3"
+                    style="cursor:pointer;"
                     (click)="openSettings()">
                         settings
                         <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -40,7 +42,7 @@
                         </li>
                     </ul>
                         
-                    <div class="image-profile">
+                    <div class="image-profile" routerLink="/profile" style="outline: none; cursor: pointer;">
                         <img [src]="loggedIn.currentUser.userImage" alt="user image">
                     </div>
                 </div>

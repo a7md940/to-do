@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   progressBarPercentage;
   showImageForm: boolean = false;
   invalidFileTypeErr: boolean = false;
+  insertImage: boolean = false;
 
   constructor(
     public profile: UpdateImageService, 
@@ -39,6 +40,13 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   updateImageProfile(e, image){
     e.preventDefault();
 
+    // if there's no file, return error.
+    if(!image.files[0]){
+      return (()=>{
+        this.insertImage = true;
+        setTimeout(()=>{this.insertImage = false},3000);
+      })();  
+    } 
     // call update user image service.
     this.profile.updateUserImage(image.files[0])
     .subscribe( event => {

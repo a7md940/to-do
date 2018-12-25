@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { UpdateImageService } from '../services/user/update-image.service';
 import { HttpEventType } from '@angular/common/http';
 import { IsloggedinService } from '../services/isloggedin.service';
@@ -26,7 +25,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.profile.getUserTodos().subscribe( (res:any)=>{
-      console.log(res);
       this.allTodos = res.allTodos;
       this.completedTodos = res.completedTodo;
     })

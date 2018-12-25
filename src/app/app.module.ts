@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './alert/alert.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { GithubReposComponent } from './github-repos/github-repos.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HeaderComponent } from './header/header.component';
     FooterComponent,
     ProfileComponent,
     HeaderComponent,
+    GithubReposComponent,
     
   ],
   imports: [

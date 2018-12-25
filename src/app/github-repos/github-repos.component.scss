@@ -1,0 +1,193 @@
+@import '../styles/mixins.scss';
+
+.container-fluid{
+    position: fixed;
+    top: 50%;
+    transform:translateY(-50%);
+    z-index: 9999;
+    & *{
+      box-sizing: border-box;
+      backface-visibility: hidden;
+    }
+    // github container box
+    #github-container-box{
+      height:68px;
+      width: 65px; // 65px last.
+      background: transparent;
+      display: flex;
+      // overflow: hidden;
+      position: relative;
+      border-radius: 0 34px 34px 0;
+      border: 2px solid #555;
+      border-left-color: transparent;
+      transition: .4s all;
+      
+        // for mobile
+        @include mobile(){
+            height: 44px;
+            width: 39px;
+            background: transparent;
+            display: flex;
+            position: relative;
+            border-radius: 0 34px 34px 0;
+            border: 1px solid #555;
+            border-left-color: transparent;
+            transition: .4s all;
+        }
+
+
+      .icon-container{
+        align-self: center;
+        background: transparent;
+        width: 100%;
+        background: transparent;
+        height: 100%;
+        padding-right: .5rem;
+        position: absolute;
+        display:flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 9999;
+        
+        a,label{
+          font-size: 3rem;
+          margin: 0rem .2rem;
+          cursor: pointer;
+          text-decoration: none;
+        }
+  
+        a.fab.fa-angular{
+          color: #ED0017;
+          position: relative;
+          text-shadow: 0px 2px 5px rgba(76, 4, 10, .3);
+                 
+        }
+  
+        a.fab.fa-node-js{
+          color: #00790D;
+          position: relative;
+          text-shadow: 0px 2px 5px rgba(76, 4, 10, .3);
+  
+        }
+  
+        a.fab.fa-github{
+          font-size: 3rem;
+          cursor: pointer;
+          transform: rotate3d(0, 0, 0, 0deg);
+          transition: .5s all;
+          position: relative;
+          z-index: 2;
+        }  
+        
+        .fas.fa-times{
+          backface-visibility: hidden;
+          cursor: pointer;
+          opacity: 0;
+          -webkit-text-stroke: 5px white;
+          z-index: 1;
+          position: absolute;
+          right: 15px;
+          transition: .5s all;
+          transform: scale(.7);
+
+          @include mobile(){
+            left: 64px;
+            font-size: 4rem;
+          }
+          
+        }
+      }
+      
+    }
+  }
+  
+  // tooltip
+  .c-tooltip{
+    position: absolute;
+    top: -27px;
+    font-size: .7rem;
+    background: rgba(0,0,0,.9);
+    color: white;
+    padding: .2rem .4rem;
+    left: 0px;
+    white-space: unset;
+    border-radius: 5px;
+    opacity:0;
+    transition: .3s all;
+    
+    // hide from mobile devices.
+    @include mobile(){
+        display:none;
+    }
+
+    @media (max-width: 768px){
+        display:none;
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      width: 0px;
+      height: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top: 4px solid  rgba(0,0,0,.9);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid transparent;        
+    }
+  }
+  
+  // checkbox behaviour
+  #github-trigger:checked + #github-container-box{
+    width: 170px !important;
+    background: white !important;
+
+    @include mobile(){
+        width: 102px !important;
+    }
+    
+    & .icon-container{
+      .fab.fa-github {
+        animation: rotate .5s forwards;
+      }
+      
+      .fas.fa-times{
+        animation: rotate-reverse .5s forwards;
+        animation-delay: .5s;
+        z-index: 3; // to be above github icon to be can hovered. 
+  
+      }
+    } 
+    
+    
+  }
+  
+  @keyframes rotate{
+    0%{
+      transform: rotate3d(0, 0, 0, 0deg);
+      
+    }
+    75%{
+      transform: rotate3d(0, 1, 0, 180deg);
+    }
+    100%{
+      opacity: 0;
+      
+    }
+  }
+  
+  @keyframes rotate-reverse{
+    0%{
+      transform: rotate3d(0, 1, 0, -180deg) scale(.7);
+      
+    }
+    75%{
+      transform: rotate3d(0, 0, 0, 0deg) scale(.7);
+    }
+    100%{
+      transform: rotate3d(0, 0, 0, 0deg) scale(.7);
+      opacity: 1;
+      
+    }
+  }
